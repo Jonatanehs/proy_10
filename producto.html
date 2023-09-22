@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    
+    <script>
+
+        class Producto {
+            #codigo
+            #titulo
+            #autor
+
+            constructor(){
+                this.#codigo = '';
+                this.#titulo = '';
+                this.#autor = '';
+            }
+
+            set setCodigo(value){
+                this.#codigo = value
+            }
+
+            get getCodigo(){
+                return this.#codigo
+            }
+
+            set setTitulo(value){
+                this.#titulo = value
+            }
+
+            get getTitulo(){
+                return this.#titulo
+            }
+
+            set setAutor(value){
+                this.#autor= value
+            }
+
+            get getAutor(){
+                return this.#autor
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + `del autor ` + this.getAutor )
+            }
+
+        }
+
+        class ProductoImpreso extends Producto{
+            #editorial
+            #año
+            #precio
+
+            constructor(){
+                super()
+                this.#editorial = ''
+                this.#año = ''
+                this.#precio = 0
+            }
+
+            set setEditorial(value){
+                this.#editorial = value
+            }
+
+            get getEditorial(){
+                return this.#editorial
+            }
+
+            set setAño(value){
+                this.#año = value
+            }
+
+            get getAño(){
+                return this.#año
+            }
+
+            set setPrecio(value){
+                this.#precio = value
+            }
+
+            get getPrecio(){
+                return this.#precio
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + `del autor ` + this.getAutor
+                + ` sale con la editorial ` + this.getEditorial + ` en el año ` +
+                this.getAño + ` con un precio de entrada ` + this.getPrecio )
+            }
+        }
+
+        class Revista extends ProductoImpreso{
+            #volumen
+
+            constructor(){
+                super()
+                this.#volumen = ''
+            }
+
+            set setVolumen(value){
+                this.#volumen = value
+            }
+
+            get getVolumen(){
+                return this.#volumen
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + ` del autor ` + this.getAutor
+                + ` sale con la editorial ` + this.getEditorial + ` en el año ` +
+                this.getAño + ` con un precio de entrada ` + this.getPrecio + 
+                ` es el volumen no ` + this.getVolumen)
+            }
+
+            estado(){
+                console.log(`El estado de la revista es en circulacion`)
+            }
+        }
+
+        class Libro extends ProductoImpreso{
+            #idioma
+
+            constructor(){
+                super()
+                this.#idioma = ''
+            }
+
+            set setIdioma(value){
+                this.#idioma = value
+            }
+
+            get getIdioma(){
+                return this.#idioma
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + ` del autor ` + this.getAutor
+                + ` sale con la editorial ` + this.getEditorial + ` en el año ` +
+                this.getAño + ` con un precio de entrada ` + this.getPrecio +
+                ` se publica en idioma ` + this.getIdioma )
+            }
+
+            estado(){
+                console.log(`Se encuentra en produccion`)
+            }
+        }
+
+        class ProductoGrabado extends Producto{
+            #tiempoDuracion
+            #medioTecnologico
+
+            constructor(){
+                super()
+                this.#tiempoDuracion = ''
+                this.#medioTecnologico = 0
+            }
+
+            set setTiempoDuracion(value){
+                this.#tiempoDuracion = value
+            }
+
+            get getTiempoDuracion(){
+                return this.#tiempoDuracion
+            }
+
+            set setMedioTecnologico(value){
+                this.#medioTecnologico = value
+            }
+
+            get getMedioTecnologico(){
+                return this.#medioTecnologico
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + ` del autor ` + this.getAutor
+                +  ` dura ` + this.getTiempoDuracion + `s donde se utiliza una ` +
+                this.getMedioTecnologico)
+            }
+        } 
+
+        class ProductoSoftware extends Producto{
+            #version
+            #sistemaOperativo
+
+            constructor(){
+                super()
+                this.#version = ''
+                this.#sistemaOperativo = 0
+            }
+
+            set setVersion(value){
+                this.#version = value
+            }
+
+            get getVersion(){
+                return this.#version
+            }
+
+            set setSistemaOperativo(value){
+                this.#sistemaOperativo = value
+            }
+
+            get getSistemaOperativo(){
+                return this.#sistemaOperativo
+            }
+
+            informacion(){
+                console.log(`El titulo del producto es ` + this.getTitulo + 
+                ` con el codigo ` + this.getCodigo + ` del autor ` + this.getAutor
+                + ` la version es ` + this.getVersion + ` y el sistema operativo es `
+                + this.getSistemaOperativo )
+            }
+        }
+
+        const revistas = new Revista
+
+        revistas.setTitulo = 'La vida solo es una'
+        revistas.setCodigo = '987890'
+        revistas.setAutor = 'Botero'
+        revistas.setEditorial = 'El tiempo'
+        revistas.setAño = '2023'
+        revistas.setPrecio = 5000
+        revistas.setVolumen = '2.0v'
+
+        revistas.informacion();
+        revistas.estado();
+
+        const libro = new Libro
+
+        libro.setTitulo = 'El viaje'
+        libro.setCodigo = '709087'
+        libro.setAutor = 'Juan Hernandez'
+        libro.setEditorial = 'Babel'
+        libro.setAño = '2022'
+        libro.setPrecio = 75000
+        libro.setIdioma = 'ingles'
+
+        libro.informacion();
+        libro.estado();
+
+        const grabado = new ProductoGrabado
+
+        grabado.setTitulo = 'Pensamiento critico'
+        grabado.setCodigo = '909389'
+        grabado.setAutor = 'Jose Antonio'
+        grabado.setTiempoDuracion = 130
+        grabado.setMedioTecnologico = 'camara'
+
+        grabado.informacion();
+
+        const software = new ProductoSoftware
+
+        software.setTitulo = 'Windows'
+        software.setCodigo = '890219'
+        software.setAutor = 'Microsoft'
+        software.setVersion = 'v1.70'
+        software.setSistemaOperativo = 11
+
+        software.informacion();
+    </script>
+</body>
+</html>

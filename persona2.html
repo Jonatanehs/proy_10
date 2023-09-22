@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+
+        class Persona {
+            #documento;
+            #nombreCompleto;
+
+            constructor() {
+                this.#documento = '';
+                this.#nombreCompleto = '';
+            }
+
+            set setDocumento(value) {
+                this.#documento = value;
+            }
+
+            get getDocumento() {
+                return this.#documento
+            }
+
+            set setNombreCompleto(value) {
+                this.#nombreCompleto = value;
+            }
+
+            get getNombreCompleto() {
+                return this.#nombreCompleto
+            }
+
+            informacion() {
+                console.log(`El nombre de la persona es` + this.getNombreCompleto
+                    + ` y su documento es ` + this.getDocumento)
+            }
+        }
+
+        class Aprendiz extends Persona {
+            #ficha;
+            #programa;
+            #fechaInicio;
+            #fechaTerminacion;
+
+            constructor() {
+                super()
+                this.#ficha = '';
+                this.#programa = '';
+                this.#fechaInicio = '';
+                this.#fechaTerminacion = '';
+            }
+
+            set setFicha(value) {
+                this.#ficha = value
+            }
+
+            get getFicha() {
+                return this.#ficha
+            }
+
+            set setPrograma(value) {
+                this.#programa = value
+            }
+
+            get getPrograma() {
+                return this.#programa
+            }
+
+            set setFechaInicio(value) {
+                this.#fechaInicio = value
+            }
+
+            get getFechaInicio() {
+                return this.#fechaInicio
+            }
+
+            set setFechaTerminacion(value) {
+                this.#fechaTerminacion = value
+            }
+
+            get getFechaTerminacion() {
+                return this.#fechaTerminacion
+            }
+
+            matricula() {
+                console.log(`El aprendiz esta en la ficha ` +
+                    this.getFicha + ` que inicio el dia ` + this.getFechaInicio +
+                    ` y culmina el dia ` + this.getFechaTerminacion)
+            }
+        }
+
+        class EtapaLectiva extends Aprendiz {
+            #numeroTrimestre
+
+            constructor() {
+                super()
+                this.#numeroTrimestre = '';
+            }
+
+            set setNumeroTrimestre(value) {
+                this.#numeroTrimestre = value
+            }
+
+            get getNumeroTrimestre() {
+                return this.#numeroTrimestre;
+            }
+
+            informacion() {
+                console.log(`El aprendiz ` + this.getNombreCompleto +
+                    ` con el documento ` + this.getDocumento + ` de la ficha ` +
+                    this.getFicha + ` inicio el dia ` + this.getFechaInicio +
+                    ` culmina el dia ` + this.getFechaTerminacion + ` en el programa ` +
+                    this.getPrograma + "." + ` Se encuentra en el ` + this.getNumeroTrimestre
+                    + ` trimestre`)
+            }
+
+            estado() {
+                console.log(`Esta en etapa lectiva`)
+            }
+        }
+
+        class EtapaPractica extends Aprendiz {
+            #modalidad
+
+            constructor() {
+                super()
+                this.#modalidad = '';
+            }
+
+            set setModalidad(value) {
+                this.#modalidad = value;
+            }
+
+            get getModalidad() {
+                return this.#modalidad;
+            }
+
+            informacion() {
+                console.log(`El aprendiz ` + this.getNombreCompleto +
+                    ` con el documento ` + this.getDocumento + ` de la ficha ` +
+                    this.getFicha + `, inicio el dia ` + this.getFechaInicio +
+                    ` culmina el dia ` + this.getFechaTerminacion + ` en el programa ` +
+                    this.getPrograma + "." + ` Se encuentra en el ` + this.getModalidad)
+            }
+
+            estado() {
+                let fechaInicio = new Date(this.getFechaInicio)
+                let fechaTerminacion = new Date(this.getFechaTerminacion)
+                let timeDiff = fechaTerminacion - fechaInicio;
+                let monthsDiff = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44));
+
+                if (monthsDiff <= 6) {
+                    console.log(`Esta haciendo practicas, llevan ${monthsDiff}` +
+                        ` meses`)
+                } else {
+                    console.log(`finalizo la etapa practica `)
+                }
+
+            }
+
+
+        }
+
+        class Instructor extends Persona {
+            #profesion
+            #salarioBasico
+            #fechaVinculacion
+
+            constructor() {
+                super()
+                this.#profesion = ''
+                this.#salarioBasico = 0
+                this.#fechaVinculacion = ''
+            }
+
+            set setProfesion(value) {
+                this.#profesion = value;
+            }
+
+            get getProfesion() {
+                return this.#profesion;
+            }
+
+            set setSalarioBasico(value) {
+                this.#salarioBasico = value;
+            }
+
+            get getSalarioBasico() {
+                return this.#salarioBasico;
+            }
+
+            set setFechaVinculacion(value) {
+                this.#fechaVinculacion = value;
+            }
+
+            get getFechaVinculacion() {
+                return this.#fechaVinculacion;
+            }
+
+            contrato() {
+                console.log(`La profesion del instructor es` + this.getProfesion +
+                    ` aprtir del ` + this.getFechaVinculacion + `con salario de ` +
+                    this.#salarioBasico)
+            }
+        }
+
+        class InstructorPlanta extends Instructor {
+            #grado
+
+            constructor() {
+                super()
+                this.#grado = 0;
+            }
+
+            set setGrado(value) {
+                this.#grado = value;
+            }
+
+            get getGrado() {
+                return this.#grado;
+            }
+
+            informacion() {
+                console.log(`El nombre del instructor es ` + this.getNombreCompleto +
+                    ` con el numero del documento ` + this.getDocumento + ` profeional` +
+                    ` en ` + this.getProfesion + ` con un salario de ` + this.getSalarioBasico +
+                    ` en el grado de ` + this.getGrado)
+            }
+
+            estado() {
+                console.log(`El estado del instructor actual es activo`)
+            }
+
+            sueldo() {
+                let grado = this.getGrado * 100000;
+                return this.getSalarioBasico + grado;
+               /* let grado = this.getGrado * 100000
+                if (this.getGrado >= 1 && this.getGrado <= 20) {
+                    return this.getSalarioBasico + grado;
+                } else {
+                    console.log(`No es un grado`)
+                }*/
+            }
+        }
+
+        class InstructorContrato extends Instructor {
+            #duracionContrato
+
+            constructor() {
+                super()
+                this.#duracionContrato = 0;
+            }
+
+            set setDuracionContrato(value) {
+                this.#duracionContrato = value;
+            }
+
+            get getDuracionContrato() {
+                return this.#duracionContrato
+            }
+
+            informacion() {
+                console.log(`El nombre del instructor es ` + this.getNombreCompleto +
+                    ` con el numero del documento  ` + this.getDocumento + ` profeional ` +
+                    ` en ` + this.getProfesion + ` con un salario de Contrato ` + this.getSalarioBasico)
+            }
+
+            estado() {
+                let fechaInicio = new Date(this.getFechaVinculacion)
+                let fechaFinalizacion = new Date(fechaInicio.getFullYear(),
+                    fechaInicio.getMonth() + this.getDuracionContrato, fechaInicio.getDate())
+                if (fechaFinalizacion > new Date()) {
+                    console.log(`El estado del instructor actual esta en planta`)
+
+                } else {
+                    console.log(`El contrato finalizo`)
+                }
+            }
+
+            sueldo() {
+                console.log(this.getSalarioBasico)
+            }
+        }
+
+
+        Reflect.preventExtensions(EtapaLectiva)
+
+        const etapaLectiva = new EtapaLectiva
+
+        Reflect.preventExtensions(etapaLectiva)
+
+        etapaLectiva.setNombreCompleto = 'antonio'
+        etapaLectiva.setDocumento = '1029304'
+        etapaLectiva.setFicha = '2780098'
+        etapaLectiva.setPrograma = 'animacion'
+        etapaLectiva.setFechaInicio = '2023-01-15'
+        etapaLectiva.setFechaTerminacion = '2023-09-25'
+        etapaLectiva.setNumeroTrimestre = 'primer'
+
+        etapaLectiva.informacion();
+        etapaLectiva.estado();
+
+        Reflect.preventExtensions(EtapaPractica)
+
+        const etapaPractica = new EtapaPractica
+
+        Reflect.preventExtensions(etapaPractica)
+
+        etapaPractica.setNombreCompleto = 'antonio'
+        etapaPractica.setDocumento = '1029304'
+        etapaPractica.setFicha = '2780098'
+        etapaPractica.setPrograma = 'animacion'
+        etapaPractica.setFechaInicio = '2023-01-15'
+        etapaPractica.setFechaTerminacion = '2023-09-25'
+        etapaPractica.setModalidad = 'presencial'
+
+        etapaPractica.informacion();
+        etapaPractica.estado();
+
+        Reflect.preventExtensions(InstructorContrato)
+
+        const instructorContrato = new InstructorContrato
+
+        Reflect.preventExtensions(instructorContrato)
+
+        instructorContrato.setNombreCompleto = `Juan`;
+        instructorContrato.setDocumento = '10449604';
+        instructorContrato.setProfesion = 'Desarrollo de hardware';
+        instructorContrato.setSalarioBasico = 1150000;
+        instructorContrato.setFechaVinculacion = '2023-01-08';
+        instructorContrato.setDuracionContrato = 10;
+
+        instructorContrato.informacion();
+        instructorContrato.estado();
+        instructorContrato.sueldo();
+
+        Reflect.preventExtensions(InstructorPlanta)
+
+        const instructorPlanta = new InstructorPlanta
+
+        Reflect.preventExtensions(instructorPlanta)
+
+        instructorPlanta.setNombreCompleto = `Alejandra`;
+        instructorPlanta.setDocumento = '190178189';
+        instructorPlanta.setProfesion = 'Desarrollo de software';
+        instructorPlanta.setSalarioBasico = 1250000;
+        instructorPlanta.setFechaVinculacion = '2023-05-08';
+        instructorPlanta.setGrado = 4;
+
+        instructorPlanta.informacion();
+        instructorPlanta.estado();
+        console.log( `el sueldo del instructor es ${instructorPlanta.sueldo()}`);
+
+    </script>
+</body>
+
+</html>
